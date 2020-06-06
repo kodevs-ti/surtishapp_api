@@ -1,47 +1,48 @@
-const mongoose = require('mongoose')
-const { Schema } = mongoose
+const { Schema, model } = require('mongoose')
+const mongoosePaginate = require('mongoose-paginate')
 
 const userSchema = new Schema({
   firstName: {
     type: String,
-    require: true,
+    required: true,
     trim: true
   },
   lastName: {
     type: String,
-    require: true,
+    required: true,
     trim: true
   },
   email: {
     type: String,
     lowercase: true,
     trim: true,
-    require: true,
+    required: true,
     unique: true,
-    match: ['/^([a-zA-Z0-9_-.]+)@([a-zA-Z0-9_-.]+).([a-zA-Z]{2,5})$/', 'This email is not valid']
+    match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'This email is not valid']
   },
   password: {
     type: String,
-    require: true,
+    required: true,
     minLength: 8
   },
   phone: {
     type: String,
-    require: true,
+    required: true,
     trim: true,
-    match: ['/+?1?/d{10}', 'This phone number is not valid']
+    match: [/^\+?1?\d{10}$/, 'This phone number is not valid']
   },
   role: {
     type: String,
     enum: ['administrator', 'seller'],
     default: 'administrator'
   },
-  store: [{
+  store: {
     type: Schema.Types.ObjectId,
     ref: 'Store'
-  }]
+  }
 }, {
   timestamps: true
 })
 
-module.exports = mongoose.model('User', userSchema)
+userSchema.plugin(mongoosePaginate)
+module.exports = model('User', userSchema)

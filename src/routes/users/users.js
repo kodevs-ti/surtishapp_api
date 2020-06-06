@@ -27,7 +27,29 @@ ROUTER.post('/signup', async (req, res) => {
   }
 })
 
-ROUTER.get('/', auth, async (req, res) => {
+ROUTER.post('/worker', auth, access('administrator'), async (req, res) => {
+  try {
+    const { store } = req.user
+    const { body } = req
+    const worker = await users.createWorker(body, store, 'seller')
+    res.json({
+      success: true,
+      data: {
+        user: worker
+      }
+    })
+  } catch (error) {
+    res.status(400)
+    res.json({
+      success: false,
+      data: {
+        message: error.message
+      }
+    })
+  }
+})
+
+ROUTER.get('/', auth, access('administrator'), async (req, res) => {
   try {
     const allUsers = await users.getAll()
     res.json({
@@ -46,14 +68,17 @@ ROUTER.get('/', auth, async (req, res) => {
   }
 })
 
-ROUTER.get('/:id', auth, async (req, res) => {
+ROUTER.get('/store', auth, access('administrator'), async (req, res) => {
   try {
-    const { id } = req.params
-    const user = await users.getById(id)
+    const { store } = req.user
+    console.log('stoe:', store)
+    const { id: userCurrent } = req.user
+    console.log(userCurrent)
+    const allUsersByStore = await users.getAllByStore(store, userCurrent)
     res.json({
       success: true,
       data: {
-        user
+        users: allUsersByStore
       }
     })
   } catch (error) {
@@ -65,6 +90,26 @@ ROUTER.get('/:id', auth, async (req, res) => {
     })
   }
 })
+
+// ROUTER.get('/:id', auth, access('administrator'), async (req, res) => {
+//   try {
+//     const { id } = req.params
+//     const user = await users.getById(id)
+//     res.json({
+//       success: true,
+//       data: {
+//         user
+//       }
+//     })
+//   } catch (error) {
+//     res.status(400).json({
+//       success: false,
+//       data: {
+//         message: error.message
+//       }
+//     })
+//   }
+// })
 
 ROUTER.patch('/:id', auth, access('administrator'), async (req, res) => {
   try {

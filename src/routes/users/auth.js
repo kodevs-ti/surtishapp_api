@@ -29,8 +29,8 @@ ROUTER.post('/login', async (req, res) => {
 
 ROUTER.get('/me', auth, async (req, res) => {
   try {
-    const { authorization: token } = req.headers
-    const user = await users.getUserByToken(token)
+    const { id } = req.user
+    const user = await users.getUserByToken(id)
     res.json({
       success: true,
       data: {

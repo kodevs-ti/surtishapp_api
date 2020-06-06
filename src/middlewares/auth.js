@@ -4,8 +4,8 @@ function auth (req, res, next) {
   const { authorization: token } = req.headers
   try {
     const tokenDecode = jwt.verify(token)
-    const { id, role } = tokenDecode
-    req.user = { id, role }
+    const { id, role, store } = tokenDecode
+    req.user = { id, role, store }
     next()
   } catch (error) {
     res.status(401)

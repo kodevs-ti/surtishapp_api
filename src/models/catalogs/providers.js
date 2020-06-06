@@ -4,25 +4,23 @@ const providerSchema = Schema({
   name: {
     type: String,
     trim: true,
-    require: true
+    required: true
   },
   contact: {
     type: String,
     trim: true,
-    require: false
+    required: false
   },
   phone: {
-    phone: {
-      type: String,
-      require: true,
-      trim: true,
-      match: ['/+?1?/d{10}', 'This phone number is not valid']
-    }
+    type: String,
+    required: true,
+    trim: true,
+    match: [/^\+?1?\d{10}$/, 'This phone number is not valid']
   },
   daysOfVisit: [{
     type: String,
     enum: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'],
-    require: false
+    required: false
   }],
   store: {
     type: Schema.ObjectId,

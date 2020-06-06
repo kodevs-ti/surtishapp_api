@@ -19,7 +19,7 @@ const clientSchema = new Schema({
     type: String,
     require: true,
     trim: true,
-    match: ['/+?1?/d{10}', 'This phone number is not valid']
+    match: [/^\+?1?\d{10}$/, 'This phone number is not valid']
   },
   email: {
     type: String,
@@ -27,7 +27,7 @@ const clientSchema = new Schema({
     trim: true,
     require: true,
     unique: true,
-    match: ['/^([a-zA-Z0-9_-.]+)@([a-zA-Z0-9_-.]+).([a-zA-Z]{2,5})$/', 'This email is not valid']
+    match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'This email is not valid']
   },
   type: {
     type: String,
