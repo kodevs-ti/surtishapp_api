@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "API for SurtiShapp project",
   "main": "index.js",
+  "private": false,
+  "engines": {
+    "node": "12.*"
+  },
+
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",

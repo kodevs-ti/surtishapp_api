@@ -21,7 +21,22 @@ app.use(morgan('dev'))
 app.use(express.json())
 
 // routes
-// app.use('/', usersRouters)
+app.get('/', (req, res) => {
+  res.json({
+    description: 'Api - SurtishApp',
+    version: '1.0.0',
+    developers: [
+      {
+        name: 'Fernanda Palacios',
+        userGit: '@EveFer'
+      },
+      {
+        name: 'Victor Torres',
+        userGit: '@victortorres-dev'
+      }
+    ]
+  })
+})
 app.use('/stores', storesRouters)
 app.use('/auth', authRouters)
 app.use('/users', usersRouters)
