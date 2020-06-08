@@ -17,35 +17,35 @@ const productSchema = Schema({
     trim: true,
     require: false
   },
-  unitMessureMajor: {
+  unitMeasureMajor: {
     type: String,
     trim: true,
     require: true,
     enum: ['pieza', 'bulto', 'caja']
   },
-  quantityByMessureMajor: {
+  quantityByMeasureMajor: {
     type: Number,
     required: true,
     min: 0
   },
-  unitMessureMedia: {
+  unitMeasureMedia: {
     type: String,
     trim: true,
     require: true,
     enum: ['pieza', 'kilogramos']
   },
-  quantityByMessureMedia: {
+  quantityByMeasureMedia: {
     type: Number,
     required: true,
     min: 0
   },
-  unitMessureMinor: {
+  unitMeasureMinor: {
     type: String,
     trim: true,
     require: true,
-    enum: ['pieza', 'Gramos']
+    enum: ['pieza', 'gramos']
   },
-  quantityByMessureMinor: {
+  quantityByMeasureMinor: {
     type: Number,
     required: true,
     min: 0
@@ -70,12 +70,12 @@ const productSchema = Schema({
     required: true,
     min: 0
   },
-  porcentageOfProfit: {
+  percentageOfProfit: {
     type: Number,
     required: true,
     min: 0
   },
-  priceSuggedByUnit: {
+  priceSuggestedByUnit: {
     type: Number,
     required: true,
     min: 0

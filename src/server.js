@@ -7,13 +7,14 @@ const {
   authRouters,
   clientsRouters,
   providersRouters,
-  categoriesRouters
+  categoriesRouters,
+  productsRouters
 } = require('./routes')
 
 const app = express()
 
 // settings
-app.set('port', process.env.PORT || 3000)
+app.set('port', process.env.PORT || 3002)
 
 // middlewares
 app.use(morgan('dev'))
@@ -27,5 +28,6 @@ app.use('/users', usersRouters)
 app.use('/clients', clientsRouters)
 app.use('/providers', providersRouters)
 app.use('/categories', categoriesRouters)
+app.use('/products', productsRouters)
 
 module.exports = app
