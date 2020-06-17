@@ -2,17 +2,6 @@ const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
 
-const whitelist = ['http://localhost:3000/', 'http://localhost:3001/']
-var corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
-  }
-}
-
 const {
   storesRouters,
   usersRouters,
@@ -31,7 +20,7 @@ app.set('port', process.env.PORT || 3002)
 // middlewares
 app.use(morgan('dev'))
 app.use(express.json())
-app.use(cors(corsOptions))
+app.use(cors())
 
 // routes
 app.get('/', (req, res) => {
