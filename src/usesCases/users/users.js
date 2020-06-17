@@ -76,7 +76,8 @@ function getById (id) {
  */
 function getByToken (id) {
   return User.findOne({ _id: id })
-    .select('name lastName email role subscription carbonFootprint')
+    .select('firstName lastName email role')
+    .populate({ path: 'store', select: 'name' })
 }
 
 function getAllByStore (idStore, userCurrent) {

@@ -30,7 +30,7 @@ ROUTER.post('/login', async (req, res) => {
 ROUTER.get('/me', auth, async (req, res) => {
   try {
     const { id } = req.user
-    const user = await users.getUserByToken(id)
+    const user = await users.getByToken(id)
     res.json({
       success: true,
       data: {
