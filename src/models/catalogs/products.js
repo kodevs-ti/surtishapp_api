@@ -1,7 +1,11 @@
 const { Schema, model } = require('mongoose')
 
 const productSchema = Schema({
-  barcode: {},
+  barcode: {
+    type: String,
+    trim: true,
+    required: false
+  },
   name: {
     type: String,
     trim: true,
@@ -50,34 +54,49 @@ const productSchema = Schema({
     required: true,
     min: 0
   },
-  stockMax: {
+  stockMaxByMeasureMajor: {
+    type: Number,
+    required: false,
+    min: 0
+  },
+  stockMinByMeasureMajor: {
+    type: Number,
+    required: false,
+    min: 0
+  },
+  stockMaxByMeasureMinor: {
+    type: Number,
+    required: false,
+    min: 0
+  },
+  stockMinByMeasureMinor: {
+    type: Number,
+    required: false,
+    min: 0
+  },
+  currentQuantityByMeasureMinor: {
     type: Number,
     required: true,
     min: 0
   },
-  stockMin: {
-    type: Number,
-    required: true,
-    min: 0
-  },
-  currentQuantity: {
+  currentQuantityByMeasureMajor: {
     type: Number,
     required: true,
     min: 0
   },
   pricePurchasedByUnit: {
     type: Number,
-    required: true,
+    required: false,
     min: 0
   },
   percentageOfProfit: {
     type: Number,
-    required: true,
+    required: false,
     min: 0
   },
   priceSuggestedByUnit: {
     type: Number,
-    required: true,
+    required: false,
     min: 0
   },
   dateOfExpiry: {

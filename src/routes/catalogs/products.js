@@ -41,7 +41,7 @@ ROUTER.post('/:idProduct/upload', (req, res) => {
   })
 })
 
-ROUTER.post('/', auth, access('administrator'), async (req, res) => {
+ROUTER.post('/', auth, access('administrator', 'seller'), async (req, res) => {
   try {
     const { body } = req
     const { store } = req.user
@@ -101,10 +101,11 @@ ROUTER.get('/', auth, access('administrator'), async (req, res) => {
   }
 })
 
-ROUTER.get('/:id', auth, access('administrator'), async (req, res) => {
+ROUTER.get('/:barcode/barcode', auth, access('administrator', 'seller'), async (req, res) => {
   try {
-    const { id } = req.params
-    const product = await products.getAll(id)
+    const { barcode } = req.params
+    const { store } = req.user
+    const product = await products.getByBarcode(barcode, store)
     res.json({
       success: true,
       data: {
@@ -121,10 +122,31 @@ ROUTER.get('/:id', auth, access('administrator'), async (req, res) => {
   }
 })
 
-ROUTER.patch('/:id', auth, access('administrator'), async (req, res) => {
+ROUTER.get('/:id', auth, access('administrator', 'seller'), async (req, res) => {
   try {
     const { id } = req.params
-    const product = await products.updateById(id)
+    const product = await products.getById(id)
+    res.json({
+      success: true,
+      data: {
+        product
+      }
+    })
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      data: {
+        message: error.message
+      }
+    })
+  }
+})
+
+ROUTER.patch('/:id', auth, access('administrator', 'seller'), async (req, res) => {
+  try {
+    const { id } = req.params
+    const { body } = req
+    const product = await products.updateById(id, body)
     res.json({
       success: true,
       data: {
