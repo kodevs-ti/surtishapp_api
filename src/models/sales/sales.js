@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose')
+const SalesTicket = require('./salesTicket')
 
 const saleSchema = Schema({
   client: {
@@ -26,6 +27,7 @@ const saleSchema = Schema({
     type: Number,
     min: 0
   },
+  salesTicket: [SalesTicket],
   store: {
     type: Schema.ObjectId,
     ref: 'Store'

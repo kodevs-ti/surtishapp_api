@@ -4,6 +4,7 @@ const clients = require('./users/clients')
 const providers = require('./catalogs/providers')
 const categories = require('./catalogs/categories')
 const products = require('./catalogs/products')
+const sales = require('./sales')
 
 module.exports = {
   stores,
@@ -11,5 +12,6 @@ module.exports = {
   clients,
   providers,
   categories,
-  products
+  products,
+  sales
 }

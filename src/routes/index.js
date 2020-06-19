@@ -5,6 +5,7 @@ const clientsRouters = require('./users/clients')
 const providersRouters = require('./catalogs/providers')
 const categoriesRouters = require('./catalogs/categories')
 const productsRouters = require('./catalogs/products')
+const salesRouters = require('./sales')
 
 module.exports = {
   storesRouters,
@@ -13,5 +14,6 @@ module.exports = {
   clientsRouters,
   providersRouters,
   categoriesRouters,
-  productsRouters
+  productsRouters,
+  salesRouters
 }

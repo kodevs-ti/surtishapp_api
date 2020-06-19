@@ -9,7 +9,8 @@ const {
   clientsRouters,
   providersRouters,
   categoriesRouters,
-  productsRouters
+  productsRouters,
+  salesRouters
 } = require('./routes')
 
 const app = express()
@@ -46,5 +47,6 @@ app.use('/clients', clientsRouters)
 app.use('/providers', providersRouters)
 app.use('/categories', categoriesRouters)
 app.use('/products', productsRouters)
+app.use('/sales', salesRouters)
 
 module.exports = app

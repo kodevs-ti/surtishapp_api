@@ -5,7 +5,6 @@ const Category = require('./catalogs/categories')
 const Provider = require('./catalogs/providers')
 const Product = require('./catalogs/products')
 const Sale = require('./sales/sales')
-const SaleTicket = require('./sales/salesTicket')
 
 module.exports = {
   User,
@@ -14,6 +13,5 @@ module.exports = {
   Category,
   Provider,
   Product,
-  Sale,
-  SaleTicket
+  Sale
 }
