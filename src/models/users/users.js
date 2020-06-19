@@ -25,6 +25,11 @@ const userSchema = new Schema({
     required: true,
     minLength: 8
   },
+  location: {
+    type: String,
+    required: false,
+    trim: true
+  },
   phone: {
     type: String,
     required: true,

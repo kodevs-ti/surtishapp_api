@@ -1,13 +1,13 @@
 const bcrypt = require('bcrypt')
 const jwt = require('../../lib/jwt')
-const { User } = require('../../models')
-
+const { User, Client } = require('../../models')
+const generateCode = require('../../lib/generateCode')
 /**
  *
  * @param {Object} userData - User data
 */
 async function signUp (userData) {
-  const { email, password, confirmationPassword } = userData
+  const { email, password, confirmationPassword, store } = userData
   if (!email) throw new Error('Email address is required')
   if (!password) throw new Error('Password is required')
   if (password.length < 8) throw new Error('Password must be at greater than 8 characters')
@@ -18,6 +18,23 @@ async function signUp (userData) {
   if (userAlreadyExists) throw new Error('Email is already in use')
 
   const hash = await bcrypt.hash(password, 10)
+
+  let code = generateCode(5)
+  const client = Client.findOne({ code })
+  if (client) {
+    code = generateCode(5)
+  }
+
+  const clientGeneral = {
+    firstName: 'General',
+    lastName: 'General',
+    phone: '0000000000',
+    email: 'general@gmail.com',
+    type: 'general',
+    code
+  }
+
+  await Client.create({ ...clientGeneral, store })
 
   return User.create({ ...userData, password: hash })
 }

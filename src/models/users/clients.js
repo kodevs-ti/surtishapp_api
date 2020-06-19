@@ -17,7 +17,7 @@ const clientSchema = new Schema({
   },
   phone: {
     type: String,
-    require: true,
+    required: true,
     trim: true,
     match: [/^\+?1?\d{10}$/, 'This phone number is not valid']
   },
