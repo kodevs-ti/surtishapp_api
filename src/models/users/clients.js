@@ -13,7 +13,7 @@ const clientSchema = new Schema({
   },
   code: {
     type: String,
-    unique: true
+    unique: false
   },
   phone: {
     type: String,
@@ -26,7 +26,6 @@ const clientSchema = new Schema({
     lowercase: true,
     trim: true,
     require: true,
-    unique: true,
     match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'This email is not valid']
   },
   type: {

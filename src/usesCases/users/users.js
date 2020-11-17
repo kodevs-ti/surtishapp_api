@@ -19,11 +19,7 @@ async function signUp (userData) {
 
   const hash = await bcrypt.hash(password, 10)
 
-  let code = generateCode(5)
-  const client = Client.findOne({ code })
-  if (client) {
-    code = generateCode(5)
-  }
+  const code = generateCode(5)
 
   const clientGeneral = {
     firstName: 'General',
