@@ -101,7 +101,7 @@ const productSchema = Schema({
   },
   dateOfExpiry: {
     type: Date,
-    required: true
+    required: false
   },
   category: {
     type: Schema.ObjectId,
