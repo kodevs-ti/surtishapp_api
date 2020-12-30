@@ -94,6 +94,11 @@ const productSchema = Schema({
     required: false,
     min: 0
   },
+  quantityOfProfit: {
+    type: Number,
+    required: false,
+    min: 0
+  },
   priceSuggestedByUnit: {
     type: Number,
     required: false,
